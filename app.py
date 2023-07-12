@@ -33,11 +33,17 @@ def preprocess_text(sen):
 
     return sentence
 
+@st.cache(allow_output_mutation=True)
+def load_model():
+    model_path = 'c1_lstm_model_acc_0.843-0.1.0.keras'
+    pretrained_lstm_model = tf.keras.models.load_model(model_path)
+    return pretrained_lstm_model
+
+
+with st.spinner('Model is being loaded..'):
+   pretrained_lstm_model=load_model()
+
 def get_prediction(text):
-    
-	#let's load the model
-	model_path = 'c1_lstm_model_acc_0.843-0.1.0.keras'
-	pretrained_lstm_model = tf.keras.models.load_model(model_path)
 
 	with open('x_train_for_tokinize.json','r') as file:
 		x_train_for_tokinize = json.load(file)
