@@ -1,10 +1,10 @@
 import tensorflow as tf
 import numpy as np
 import json
-# Load previously trained LSTM Model
 import re
 import nltk
 from nltk.corpus import stopwords
+nltk.download('stopwords')
 import streamlit as st
 
 TAG_re = re.compile(r'<[^>]+>')
