@@ -73,8 +73,10 @@ def main():
     #button for prediction
     if st.button('Predict rating'):
         result = get_prediction(review_text)
-
-    st.success(result)
+    if result < 6 and result !=0:
+        st.warning(result)
+    else:
+        st.success(result)
     if result > 6:
         review = '<p style="font-family:sans-serif; color:Green; font-size: 22px;">Positive Review</p>'
         st.markdown(review, unsafe_allow_html=True)
