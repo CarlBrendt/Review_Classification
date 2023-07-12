@@ -68,16 +68,16 @@ def main():
     
     review_text = st.text_input('Movie Review Text')
     
-    result = 0
+    result = ''
     
     #button for prediction
-    if st.button('Enter review here'):
+    if st.button('Click to predict'):
         result = get_prediction(review_text)
         
     st.success(result)
-    if result > 6 :
+    if result > 6:
         st.write('Positive Review')
-    else:
+    elif result <= 6 and result != '':
         st.write('Negative Review')
     
 if __name__ == '__main__':
