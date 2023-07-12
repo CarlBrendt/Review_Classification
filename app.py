@@ -64,20 +64,19 @@ def get_prediction(text):
 	return rating[0][0]
 
 def main():
-    primaryColor="#03A5FC"
-    st.title('Review Classification Rating')
+    st.title('Review Classification')
     
     review_text = st.text_input('Movie Review Text')
     
     result = 0
     
     #button for prediction
-    if st.button('Click to predict'):
+    if st.button('Predict rating'):
         result = get_prediction(review_text)
 
     st.success(result)
     if result > 6:
-        review = '<p style="font-family:sans-serif; color:Green; font-size: 25px;">Positive Review</p>'
+        review = '<p style="font-family:sans-serif; color:Green; font-size: 22px;">Positive Review</p>'
         st.markdown(review, unsafe_allow_html=True)
     elif result <= 6 and result != 0:
         review = '<p style="font-family:sans-serif; color:Red; font-size: 25px;">Negative Review</p>'
