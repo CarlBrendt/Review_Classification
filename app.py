@@ -7,6 +7,12 @@ from nltk.corpus import stopwords
 nltk.download('stopwords')
 import streamlit as st
 
+@st.cache()
+def load_data():
+    with open('x_train_for_tokinize.json','r') as file:
+        x_train_for_tokinize = json.load(file)
+    return x_train_for_tokinize
+    
 TAG_re = re.compile(r'<[^>]+>')
 def remove_tags(text):
     return TAG_re.sub('',text)
@@ -45,8 +51,7 @@ with st.spinner('Model is being loaded..'):
 
 def get_prediction(text):
 
-	with open('x_train_for_tokinize.json','r') as file:
-		x_train_for_tokinize = json.load(file)
+	x_train_for_tokinize = load_data()
 		
 	word_tokenizer = tf.keras.preprocessing.text.Tokenizer()
 	word_tokenizer.fit_on_texts(x_train_for_tokinize)
@@ -74,7 +79,7 @@ def main():
     if st.button('Predict rating'):
         result = get_prediction(review_text)
     if result < 6 and result !=0:
-        st.warning(result)
+        st.error(result)
     else:
         st.success(result)
     if result > 6:
