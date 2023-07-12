@@ -75,6 +75,10 @@ def main():
         result = get_prediction(review_text)
         
     st.success(result)
+    if result > 6 :
+        st.write('Positive Review')
+    else:
+        st.write('Negative Review')
     
 if __name__ == '__main__':
     main()
